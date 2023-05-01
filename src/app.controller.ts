@@ -15,6 +15,11 @@ export class AppController {
     return apiKey;
   }
 
+  @Get('test')
+  getestt(): string {
+    return 'Server Works';
+  }
+
   @Post('ask')
   async chatGPT(@Body('prompt') prompt: string): Promise<string> {
     return await this.appService.chatGPT(prompt);
