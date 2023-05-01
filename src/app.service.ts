@@ -11,7 +11,7 @@ export class AppService {
       const apiKey = this.configService.get<string>('OPENAI_API_KEY');
 
       const response = await axios.post(
-        'https://api.openai.com/v1/engines/davinci-codex/completions',
+        'https://api.openai.com/v1/engines/davinci/completions',
         {
           prompt,
           max_tokens: 50,
