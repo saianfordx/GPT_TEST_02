@@ -1,9 +1,19 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly configService: ConfigService,
+  ) {}
+
+  @Get('env-test')
+  getEnvTest(): string {
+    const apiKey = this.configService.get<string>('OPENAI_API_KEY');
+    return apiKey;
+  }
 
   @Post('ask')
   async chatGPT(@Body('prompt') prompt: string): Promise<string> {
